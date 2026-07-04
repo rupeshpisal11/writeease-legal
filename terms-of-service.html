@@ -20,72 +20,73 @@
     --card:#ffffff;
     --radius:10px;
   }
-  *{box-sizing:border-box;}
+  *{box-sizing:border-box; -webkit-tap-highlight-color:transparent;}
   html{scroll-behavior:smooth;}
   body{
     margin:0;
     background:var(--paper);
     color:var(--ink);
     font-family:'Inter',-apple-system,Segoe UI,Roboto,Arial,sans-serif;
-    line-height:1.65;
+    line-height:1.6;
+    font-size:16px;
     -webkit-font-smoothing:antialiased;
   }
   a{color:var(--teal);}
-  a:hover{text-decoration-thickness:2px;}
+  a:active{opacity:.7;}
   code, .mono{ font-family:'IBM Plex Mono',monospace; }
 
-  /* ===== Header / Hero ===== */
+  /* ===== Header / Hero — mobile first ===== */
   .hero{
     max-width:1040px;
     margin:0 auto;
-    padding:64px 24px 40px;
+    padding:32px 18px 24px;
   }
   .eyebrow{
     font-family:'IBM Plex Mono',monospace;
-    font-size:12px;
-    letter-spacing:.12em;
+    font-size:11px;
+    letter-spacing:.1em;
     text-transform:uppercase;
     color:var(--teal);
     display:flex;
     align-items:center;
-    gap:10px;
-    margin-bottom:18px;
+    gap:8px;
+    margin-bottom:14px;
   }
   .eyebrow::before{
     content:"";
-    width:7px;height:7px;border-radius:50%;
+    width:6px;height:6px;border-radius:50%;
     background:var(--teal);
     display:inline-block;
+    flex:none;
   }
   h1{
     font-family:'Source Serif 4', Georgia, serif;
     font-weight:700;
-    font-size:clamp(32px, 5vw, 46px);
-    line-height:1.1;
-    margin:0 0 14px;
+    font-size:28px;
+    line-height:1.15;
+    margin:0 0 12px;
     letter-spacing:-0.01em;
   }
   .sub{
     color:var(--ink-soft);
-    font-size:16.5px;
-    max-width:620px;
+    font-size:15.5px;
     margin:0 0 8px;
   }
   .updated{
     font-family:'IBM Plex Mono',monospace;
-    font-size:12.5px;
+    font-size:12px;
     color:#8a8578;
   }
 
-  /* ===== At-a-glance strip (signature element) ===== */
+  /* ===== At-a-glance strip (signature element) — stacked on mobile ===== */
   .glance{
     max-width:1040px;
-    margin:8px auto 8px;
-    padding:0 24px;
+    margin:0 auto 4px;
+    padding:0 18px;
   }
   .glance-grid{
     display:grid;
-    grid-template-columns:repeat(4, 1fr);
+    grid-template-columns:1fr;
     gap:1px;
     background:var(--hairline);
     border:1px solid var(--hairline);
@@ -94,103 +95,99 @@
   }
   .glance-cell{
     background:var(--card);
-    padding:18px 18px 20px;
+    padding:15px 16px 16px;
   }
   .glance-label{
     font-family:'IBM Plex Mono',monospace;
-    font-size:10.5px;
-    letter-spacing:.08em;
+    font-size:10px;
+    letter-spacing:.07em;
     text-transform:uppercase;
     color:#8a8578;
-    margin-bottom:8px;
+    margin-bottom:6px;
   }
   .glance-value{
-    font-size:14.5px;
+    font-size:14px;
     font-weight:500;
     color:var(--ink);
-    line-height:1.4;
+    line-height:1.45;
   }
   .glance-value .accent{color:var(--teal);}
 
-  @media (max-width: 780px){
-    .glance-grid{grid-template-columns:1fr 1fr;}
-  }
-  @media (max-width: 480px){
-    .glance-grid{grid-template-columns:1fr;}
-  }
-
-  /* ===== Layout: TOC + content ===== */
+  /* ===== Layout: mobile-first single column ===== */
   .layout{
     max-width:1040px;
     margin:0 auto;
-    padding:48px 24px 100px;
-    display:grid;
-    grid-template-columns:220px 1fr;
-    gap:56px;
-    align-items:start;
+    padding:28px 18px 72px;
   }
   nav.toc{
-    position:sticky;
-    top:32px;
-    font-size:13.5px;
+    margin-bottom:28px;
+    padding-bottom:16px;
+    border-bottom:1px solid var(--hairline);
   }
   nav.toc .toc-title{
     font-family:'IBM Plex Mono',monospace;
-    font-size:11px;
-    letter-spacing:.1em;
+    font-size:10.5px;
+    letter-spacing:.09em;
     text-transform:uppercase;
     color:#8a8578;
-    margin-bottom:12px;
+    margin-bottom:10px;
   }
-  nav.toc ol{
-    list-style:none;
-    margin:0; padding:0;
-    display:flex; flex-direction:column; gap:2px;
+  nav.toc .toc-scroll{
+    display:flex;
+    gap:8px;
+    overflow-x:auto;
+    padding-bottom:4px;
+    -webkit-overflow-scrolling:touch;
+    scrollbar-width:none;
   }
+  nav.toc .toc-scroll::-webkit-scrollbar{display:none;}
   nav.toc a{
+    flex:none;
     color:var(--ink-soft);
     text-decoration:none;
     display:flex;
-    gap:10px;
-    padding:6px 0;
-    border-left:2px solid transparent;
-    padding-left:12px;
-    margin-left:-12px;
-    transition:color .15s, border-color .15s;
+    align-items:center;
+    gap:7px;
+    padding:9px 13px;
+    background:var(--card);
+    border:1px solid var(--hairline);
+    border-radius:999px;
+    font-size:13px;
+    white-space:nowrap;
   }
-  nav.toc a:hover{color:var(--ink); border-color:var(--hairline);}
+  nav.toc a:active{background:var(--teal-soft); border-color:var(--teal);}
   nav.toc .num{
     font-family:'IBM Plex Mono',monospace;
     color:#b8b2a2;
-    font-size:12px;
+    font-size:11.5px;
   }
 
   main{min-width:0;}
   section{
-    padding-top:6px;
-    margin-bottom:44px;
-    scroll-margin-top:28px;
+    padding-top:4px;
+    margin-bottom:36px;
+    scroll-margin-top:16px;
   }
   section h2{
     font-family:'Source Serif 4', Georgia, serif;
     font-weight:600;
-    font-size:23px;
-    margin:0 0 14px;
+    font-size:20px;
+    margin:0 0 12px;
     display:flex;
     align-items:baseline;
-    gap:12px;
+    gap:10px;
   }
   section h2 .num{
     font-family:'IBM Plex Mono',monospace;
-    font-size:14px;
+    font-size:13px;
     color:var(--teal);
     font-weight:500;
   }
   section p, section li{
     color:#2a2f38;
-    font-size:15.5px;
+    font-size:15px;
   }
-  section ul{padding-left:20px; margin-top:10px;}
+  section ul{padding-left:18px; margin-top:8px;}
   section li{margin-bottom:8px;}
   section li:last-child{margin-bottom:0;}
 
@@ -198,10 +195,10 @@
     background:var(--amber-soft);
     border:1px solid #ecd9bb;
     border-radius:var(--radius);
-    padding:14px 18px;
-    font-size:14.5px;
+    padding:13px 15px;
+    font-size:14px;
     color:#5a3c10;
-    margin-top:14px;
+    margin-top:12px;
   }
   .callout strong{color:#8a5410;}
 
@@ -209,40 +206,79 @@
     background:var(--teal-soft);
     border:1px solid #cfe4e1;
     border-radius:var(--radius);
-    padding:22px 24px;
-    margin-top:10px;
+    padding:18px 16px;
+    margin-top:8px;
   }
   .contact p{margin:0 0 8px; color:#123b37;}
   .contact .email-line{
     font-family:'IBM Plex Mono',monospace;
-    font-size:15px;
+    font-size:14.5px;
     color:var(--teal);
-    margin-top:6px;
+    margin-top:4px;
+    word-break:break-all;
   }
 
   footer{
     max-width:1040px;
     margin:0 auto;
-    padding:0 24px 60px;
+    padding:0 18px 44px;
     color:#a19c8d;
-    font-size:12.5px;
+    font-size:12px;
     font-family:'IBM Plex Mono',monospace;
   }
 
-  @media (max-width: 780px){
-    .layout{grid-template-columns:1fr; gap:0;}
+  /* ===== Desktop enhancement ===== */
+  @media (min-width: 780px){
+    .hero{padding:64px 24px 40px;}
+    h1{font-size:clamp(32px, 5vw, 46px);}
+    .sub{font-size:16.5px; max-width:620px;}
+    .eyebrow{font-size:12px; margin-bottom:18px;}
+
+    .glance{padding:0 24px;}
+    .glance-grid{grid-template-columns:repeat(4, 1fr);}
+    .glance-cell{padding:18px 18px 20px;}
+    .glance-label{font-size:10.5px; margin-bottom:8px;}
+    .glance-value{font-size:14.5px;}
+
+    .layout{
+      padding:48px 24px 100px;
+      display:grid;
+      grid-template-columns:220px 1fr;
+      gap:56px;
+      align-items:start;
+    }
     nav.toc{
-      position:static;
-      margin-bottom:32px;
-      padding-bottom:20px;
-      border-bottom:1px solid var(--hairline);
+      position:sticky;
+      top:32px;
+      margin-bottom:0;
+      padding-bottom:0;
+      border-bottom:none;
+      font-size:13.5px;
     }
-    nav.toc ol{
-      flex-direction:row;
-      flex-wrap:wrap;
-      gap:8px 16px;
+    nav.toc .toc-scroll{
+      flex-direction:column;
+      overflow-x:visible;
     }
-    nav.toc a{padding-left:0; margin-left:0; border-left:none;}
+    nav.toc a{
+      background:none;
+      border:none;
+      border-left:2px solid transparent;
+      border-radius:0;
+      padding:6px 0 6px 12px;
+      margin-left:-12px;
+    }
+    nav.toc a:active, nav.toc a:hover{background:none; color:var(--ink); border-color:var(--hairline);}
+
+    section{margin-bottom:44px; scroll-margin-top:28px;}
+    section h2{font-size:23px;}
+    section p, section li{font-size:15.5px;}
+
+    .contact{padding:22px 24px;}
+    .contact .email-line{font-size:15px; word-break:normal;}
+  }
+
+  @media (min-width: 480px) and (max-width: 779px){
+    .glance-grid{grid-template-columns:1fr 1fr;}
   }
 
   @media (prefers-reduced-motion: reduce){
@@ -283,20 +319,20 @@
 <div class="layout">
   <nav class="toc" aria-label="Table of contents">
     <div class="toc-title">On this page</div>
-    <ol>
-      <li><a href="#s1"><span class="num">01</span> Description of service</a></li>
-      <li><a href="#s2"><span class="num">02</span> Free usage &amp; premium</a></li>
-      <li><a href="#s3"><span class="num">03</span> Acceptable use</a></li>
-      <li><a href="#s4"><span class="num">04</span> AI content disclaimer</a></li>
-      <li><a href="#s5"><span class="num">05</span> Intellectual property</a></li>
-      <li><a href="#s6"><span class="num">06</span> Third-party services</a></li>
-      <li><a href="#s7"><span class="num">07</span> Termination</a></li>
-      <li><a href="#s8"><span class="num">08</span> Warranty disclaimer</a></li>
-      <li><a href="#s9"><span class="num">09</span> Limitation of liability</a></li>
-      <li><a href="#s10"><span class="num">10</span> Changes to these terms</a></li>
-      <li><a href="#s11"><span class="num">11</span> Governing law</a></li>
-      <li><a href="#s12"><span class="num">12</span> Contact us</a></li>
-    </ol>
+    <div class="toc-scroll">
+      <a href="#s1"><span class="num">01</span> Description of service</a>
+      <a href="#s2"><span class="num">02</span> Free usage &amp; premium</a>
+      <a href="#s3"><span class="num">03</span> Acceptable use</a>
+      <a href="#s4"><span class="num">04</span> AI content disclaimer</a>
+      <a href="#s5"><span class="num">05</span> Intellectual property</a>
+      <a href="#s6"><span class="num">06</span> Third-party services</a>
+      <a href="#s7"><span class="num">07</span> Termination</a>
+      <a href="#s8"><span class="num">08</span> Warranty disclaimer</a>
+      <a href="#s9"><span class="num">09</span> Limitation of liability</a>
+      <a href="#s10"><span class="num">10</span> Changes to these terms</a>
+      <a href="#s11"><span class="num">11</span> Governing law</a>
+      <a href="#s12"><span class="num">12</span> Contact us</a>
+    </div>
   </nav>
 
   <main>
