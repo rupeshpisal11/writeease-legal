@@ -4,90 +4,447 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Privacy Policy — WriteEase AI</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,600;8..60,700&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
-  body { font-family: -apple-system, Segoe UI, Roboto, Arial, sans-serif; max-width: 760px; margin: 40px auto; padding: 0 20px; line-height: 1.65; color: #1a1a1a; }
-  h1 { font-size: 28px; margin-bottom: 4px; }
-  .updated { color: #666; font-size: 14px; margin-bottom: 32px; }
-  h2 { font-size: 20px; margin-top: 36px; border-bottom: 1px solid #eee; padding-bottom: 6px; }
-  table { width: 100%; border-collapse: collapse; margin: 16px 0; }
-  th, td { text-align: left; padding: 8px 10px; border: 1px solid #ddd; font-size: 14px; vertical-align: top; }
-  th { background: #f5f5f5; }
-  a { color: #2563eb; }
-  code { background: #f5f5f5; padding: 1px 5px; border-radius: 3px; font-size: 13px; }
-  .contact { background: #f8f9fb; border: 1px solid #e5e7eb; border-radius: 8px; padding: 16px 20px; margin-top: 20px; }
+  :root{
+    --paper:#fbfaf7;
+    --ink:#151a23;
+    --ink-soft:#4b5563;
+    --hairline:#e4e1d8;
+    --teal:#0f6d66;
+    --teal-soft:#e7f1ef;
+    --amber:#b1650f;
+    --amber-soft:#faf0e3;
+    --card:#ffffff;
+    --radius:10px;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--paper);
+    color:var(--ink);
+    font-family:'Inter',-apple-system,Segoe UI,Roboto,Arial,sans-serif;
+    line-height:1.65;
+    -webkit-font-smoothing:antialiased;
+  }
+  a{color:var(--teal);}
+  a:hover{text-decoration-thickness:2px;}
+  code, .mono{ font-family:'IBM Plex Mono',monospace; }
+
+  /* ===== Header / Hero ===== */
+  .hero{
+    max-width:1040px;
+    margin:0 auto;
+    padding:64px 24px 40px;
+  }
+  .eyebrow{
+    font-family:'IBM Plex Mono',monospace;
+    font-size:12px;
+    letter-spacing:.12em;
+    text-transform:uppercase;
+    color:var(--teal);
+    display:flex;
+    align-items:center;
+    gap:10px;
+    margin-bottom:18px;
+  }
+  .eyebrow::before{
+    content:"";
+    width:7px;height:7px;border-radius:50%;
+    background:var(--teal);
+    display:inline-block;
+  }
+  h1{
+    font-family:'Source Serif 4', Georgia, serif;
+    font-weight:700;
+    font-size:clamp(32px, 5vw, 46px);
+    line-height:1.1;
+    margin:0 0 14px;
+    letter-spacing:-0.01em;
+  }
+  .sub{
+    color:var(--ink-soft);
+    font-size:16.5px;
+    max-width:620px;
+    margin:0 0 8px;
+  }
+  .updated{
+    font-family:'IBM Plex Mono',monospace;
+    font-size:12.5px;
+    color:#8a8578;
+  }
+
+  /* ===== Data receipt (signature element) ===== */
+  .receipt{
+    max-width:1040px;
+    margin:8px auto 8px;
+    padding:0 24px;
+  }
+  .receipt-card{
+    background:var(--card);
+    border:1px solid var(--hairline);
+    border-radius:var(--radius);
+    padding:22px 24px;
+    box-shadow:0 1px 2px rgba(20,20,10,0.03);
+  }
+  .receipt-title{
+    font-family:'IBM Plex Mono',monospace;
+    font-size:11px;
+    letter-spacing:.1em;
+    text-transform:uppercase;
+    color:#8a8578;
+    margin-bottom:14px;
+  }
+  .receipt-row{
+    display:flex;
+    align-items:baseline;
+    justify-content:space-between;
+    gap:16px;
+    padding:11px 0;
+    border-top:1px dashed var(--hairline);
+    font-size:14.5px;
+  }
+  .receipt-row:first-of-type{border-top:none;}
+  .receipt-left{display:flex; align-items:baseline; gap:10px;}
+  .dot{width:8px;height:8px;border-radius:50%;flex:none;position:relative;top:-1px;}
+  .dot.local{background:var(--ink-soft);}
+  .dot.processed{background:var(--teal);}
+  .dot.thirdparty{background:var(--amber);}
+  .receipt-label{font-weight:500;}
+  .receipt-dest{
+    font-family:'IBM Plex Mono',monospace;
+    font-size:12.5px;
+    color:var(--ink-soft);
+    white-space:nowrap;
+  }
+  .receipt-legend{
+    display:flex;
+    flex-wrap:wrap;
+    gap:18px;
+    margin-top:16px;
+    padding-top:14px;
+    border-top:1px solid var(--hairline);
+    font-size:12.5px;
+    color:var(--ink-soft);
+  }
+  .receipt-legend span{display:flex; align-items:center; gap:6px;}
+
+  /* ===== Layout: TOC + content ===== */
+  .layout{
+    max-width:1040px;
+    margin:0 auto;
+    padding:48px 24px 100px;
+    display:grid;
+    grid-template-columns:220px 1fr;
+    gap:56px;
+    align-items:start;
+  }
+  nav.toc{
+    position:sticky;
+    top:32px;
+    font-size:13.5px;
+  }
+  nav.toc .toc-title{
+    font-family:'IBM Plex Mono',monospace;
+    font-size:11px;
+    letter-spacing:.1em;
+    text-transform:uppercase;
+    color:#8a8578;
+    margin-bottom:12px;
+  }
+  nav.toc ol{
+    list-style:none;
+    margin:0; padding:0;
+    display:flex; flex-direction:column; gap:2px;
+  }
+  nav.toc a{
+    color:var(--ink-soft);
+    text-decoration:none;
+    display:flex;
+    gap:10px;
+    padding:6px 0;
+    border-left:2px solid transparent;
+    padding-left:12px;
+    margin-left:-12px;
+    transition:color .15s, border-color .15s;
+  }
+  nav.toc a:hover{color:var(--ink); border-color:var(--hairline);}
+  nav.toc .num{
+    font-family:'IBM Plex Mono',monospace;
+    color:#b8b2a2;
+    font-size:12px;
+  }
+
+  main{min-width:0;}
+  section{
+    padding-top:6px;
+    margin-bottom:44px;
+    scroll-margin-top:28px;
+  }
+  section h2{
+    font-family:'Source Serif 4', Georgia, serif;
+    font-weight:600;
+    font-size:23px;
+    margin:0 0 14px;
+    display:flex;
+    align-items:baseline;
+    gap:12px;
+  }
+  section h2 .num{
+    font-family:'IBM Plex Mono',monospace;
+    font-size:14px;
+    color:var(--teal);
+    font-weight:500;
+  }
+  section p, section li{
+    color:#2a2f38;
+    font-size:15.5px;
+  }
+  section ul{padding-left:20px;}
+
+  table{
+    width:100%;
+    border-collapse:collapse;
+    margin:18px 0 6px;
+    font-size:14px;
+    background:var(--card);
+    border:1px solid var(--hairline);
+    border-radius:var(--radius);
+    overflow:hidden;
+  }
+  th, td{
+    text-align:left;
+    padding:12px 14px;
+    border-bottom:1px solid var(--hairline);
+    vertical-align:top;
+  }
+  tr:last-child td{border-bottom:none;}
+  th{
+    background:#f4f2ec;
+    font-family:'IBM Plex Mono',monospace;
+    font-weight:500;
+    font-size:11.5px;
+    letter-spacing:.04em;
+    text-transform:uppercase;
+    color:var(--ink-soft);
+  }
+
+  .callout{
+    background:var(--amber-soft);
+    border:1px solid #ecd9bb;
+    border-radius:var(--radius);
+    padding:14px 18px;
+    font-size:14.5px;
+    color:#5a3c10;
+    margin-top:14px;
+  }
+  .callout strong{color:#8a5410;}
+
+  .contact{
+    background:var(--teal-soft);
+    border:1px solid #cfe4e1;
+    border-radius:var(--radius);
+    padding:22px 24px;
+    margin-top:10px;
+  }
+  .contact p{margin:0 0 8px; color:#123b37;}
+  .contact .email-line{
+    font-family:'IBM Plex Mono',monospace;
+    font-size:15px;
+    color:var(--teal);
+    margin-top:6px;
+  }
+
+  footer{
+    max-width:1040px;
+    margin:0 auto;
+    padding:0 24px 60px;
+    color:#a19c8d;
+    font-size:12.5px;
+    font-family:'IBM Plex Mono',monospace;
+  }
+
+  @media (max-width: 780px){
+    .layout{grid-template-columns:1fr; gap:0;}
+    nav.toc{
+      position:static;
+      margin-bottom:32px;
+      padding-bottom:20px;
+      border-bottom:1px solid var(--hairline);
+    }
+    nav.toc ol{
+      flex-direction:row;
+      flex-wrap:wrap;
+      gap:8px 16px;
+    }
+    nav.toc a{padding-left:0; margin-left:0; border-left:none;}
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    html{scroll-behavior:auto;}
+  }
 </style>
 </head>
 <body>
 
-<h1>Privacy Policy for WriteEase AI</h1>
-<p class="updated">Last updated: July 3, 2026</p>
-
-<p>This Privacy Policy explains how WriteEase AI ("the App", "we", "us") handles information when you use the app. WriteEase AI is developed and maintained by an independent developer based in India. By using the App, you agree to the practices described below.</p>
-
-<h2>1. Information We Collect</h2>
-
-<table>
-<tr><th>Type</th><th>What it is</th><th>Why we collect it</th></tr>
-<tr>
-  <td>Text you enter into a writing tool</td>
-  <td>The text you type or paste into the Paraphraser, AI Humanizer, Grammar Fixer, Email Writer, Templates, or Plagiarism Checker</td>
-  <td>Sent to our AI processing partner (Groq) solely to generate the tool's output. Not stored on any server we control.</td>
-</tr>
-<tr>
-  <td>Usage &amp; history data</td>
-  <td>Your daily credit count, tool usage history, dark mode preference, premium status</td>
-  <td>Stored locally on your device only, to run features like your daily free-credit limit and your writing history. This data never leaves your device and is not visible to us.</td>
-</tr>
-<tr>
-  <td>Advertising identifier</td>
-  <td>Android Advertising ID and device/ad interaction data</td>
-  <td>Collected by Google AdMob to show and measure ads. We do not control or access this data directly — see Section 3.</td>
-</tr>
-<tr>
-  <td>Purchase information</td>
-  <td>Confirmation that you purchased the Premium upgrade (₹99 one-time)</td>
-  <td>Handled entirely by Google Play Billing. We only receive a purchase-confirmed status, not your payment details.</td>
-</tr>
-</table>
-
-<p>WriteEase AI does <strong>not</strong> require you to create an account, and we do not collect your name, email address, or phone number directly within the app.</p>
-
-<h2>2. How Your Text Is Processed</h2>
-<p>When you use a writing tool, the text you enter is sent over an encrypted (HTTPS) connection to Groq (<a href="https://groq.com" target="_blank">groq.com</a>), a third-party AI inference provider, solely to generate the requested output (e.g., a paraphrased version, a grammar correction). We do not permanently store this text on any server we operate. Please avoid entering sensitive personal information (such as financial details, passwords, or medical information) into the writing tools, since it is transmitted to a third-party service for processing.</p>
-
-<h2>3. Third-Party Services</h2>
-<p>WriteEase AI uses the following third-party services, each governed by its own privacy policy:</p>
-<table>
-<tr><th>Service</th><th>Purpose</th><th>Policy</th></tr>
-<tr><td>Groq</td><td>AI text processing for all writing tools</td><td><a href="https://groq.com/privacy-policy/" target="_blank">groq.com/privacy-policy</a></td></tr>
-<tr><td>Google AdMob</td><td>Displaying banner, interstitial, and rewarded ads</td><td><a href="https://policies.google.com/privacy" target="_blank">policies.google.com/privacy</a></td></tr>
-<tr><td>Google Play Billing</td><td>Processing the one-time Premium purchase</td><td><a href="https://policies.google.com/privacy" target="_blank">policies.google.com/privacy</a></td></tr>
-</table>
-
-<h2>4. Data Storage &amp; Retention</h2>
-<p>Your writing history, usage counters, and preferences are stored locally on your device using Android's app storage. This data is deleted automatically if you uninstall the app or manually clear the app's storage/cache. We do not maintain our own backend database of user content.</p>
-
-<h2>5. Children's Privacy</h2>
-<p>WriteEase AI is not directed at children under the age of 13, and we do not knowingly collect personal information from children under 13. If you believe a child has provided us with personal information, please contact us using the details below so we can address it.</p>
-
-<h2>6. Your Choices</h2>
-<ul>
-<li>You can clear your local history and usage data at any time by clearing the app's storage in Android Settings, or by uninstalling the app.</li>
-<li>You can opt out of personalized advertising through your device's Google Ads Settings (Settings → Google → Ads → Opt out of Ads Personalization).</li>
-<li>You can request account/data deletion assistance by contacting us — see Section 8.</li>
-</ul>
-
-<h2>7. Data Security</h2>
-<p>We use industry-standard encryption (HTTPS/TLS) for all network communication between the app and our AI processing partner. No method of transmission or storage is 100% secure, but we take reasonable steps to protect your information.</p>
-
-<h2>8. Changes to This Policy</h2>
-<p>We may update this Privacy Policy from time to time. Changes will be posted on this page with an updated "Last updated" date. Continued use of the App after changes are posted constitutes acceptance of the revised policy.</p>
-
-<h2>9. Contact Us</h2>
-<div class="contact">
-<p>If you have questions about this Privacy Policy or how your data is handled, contact:</p>
-<p><strong>Email:</strong> <code>[rupeshpisal1505@gmail.com]</code></p>
+<div class="hero">
+  <div class="eyebrow">Privacy Policy · WriteEase AI</div>
+  <h1>What we collect. Where it goes.<br>Nothing more, nothing hidden.</h1>
+  <p class="sub">WriteEase AI is built by an independent developer based in India. This page explains, in plain terms, exactly what happens to your data when you use the app.</p>
+  <p class="updated">Last updated July 3, 2026</p>
 </div>
+
+<div class="receipt">
+  <div class="receipt-card">
+    <div class="receipt-title">Your data, itemized</div>
+
+    <div class="receipt-row">
+      <div class="receipt-left">
+        <span class="dot processed"></span>
+        <span class="receipt-label">Text you type into a tool</span>
+      </div>
+      <span class="receipt-dest">→ sent to Groq, not stored</span>
+    </div>
+
+    <div class="receipt-row">
+      <div class="receipt-left">
+        <span class="dot local"></span>
+        <span class="receipt-label">Usage history &amp; preferences</span>
+      </div>
+      <span class="receipt-dest">→ stays on your device</span>
+    </div>
+
+    <div class="receipt-row">
+      <div class="receipt-left">
+        <span class="dot thirdparty"></span>
+        <span class="receipt-label">Advertising ID</span>
+      </div>
+      <span class="receipt-dest">→ collected by Google AdMob</span>
+    </div>
+
+    <div class="receipt-row">
+      <div class="receipt-left">
+        <span class="dot thirdparty"></span>
+        <span class="receipt-label">Purchase confirmation</span>
+      </div>
+      <span class="receipt-dest">→ handled by Google Play Billing</span>
+    </div>
+
+    <div class="receipt-legend">
+      <span><span class="dot processed"></span> Processed elsewhere, not retained</span>
+      <span><span class="dot local"></span> Never leaves your device</span>
+      <span><span class="dot thirdparty"></span> Managed by a third party</span>
+    </div>
+  </div>
+</div>
+
+<div class="layout">
+  <nav class="toc" aria-label="Table of contents">
+    <div class="toc-title">On this page</div>
+    <ol>
+      <li><a href="#s1"><span class="num">01</span> Information we collect</a></li>
+      <li><a href="#s2"><span class="num">02</span> How your text is processed</a></li>
+      <li><a href="#s3"><span class="num">03</span> Third-party services</a></li>
+      <li><a href="#s4"><span class="num">04</span> Storage &amp; retention</a></li>
+      <li><a href="#s5"><span class="num">05</span> Children's privacy</a></li>
+      <li><a href="#s6"><span class="num">06</span> Your choices</a></li>
+      <li><a href="#s7"><span class="num">07</span> Data security</a></li>
+      <li><a href="#s8"><span class="num">08</span> Changes to this policy</a></li>
+      <li><a href="#s9"><span class="num">09</span> Contact us</a></li>
+    </ol>
+  </nav>
+
+  <main>
+
+    <section id="s1">
+      <h2><span class="num">01</span> Information we collect</h2>
+      <table>
+        <tr><th>Type</th><th>What it is</th><th>Why we collect it</th></tr>
+        <tr>
+          <td>Text you enter into a writing tool</td>
+          <td>What you type or paste into the Paraphraser, AI Humanizer, Grammar Fixer, Email Writer, Templates, or Plagiarism Checker</td>
+          <td>Sent to our AI processing partner (Groq) solely to generate the tool's output. Not stored on any server we control.</td>
+        </tr>
+        <tr>
+          <td>Usage &amp; history data</td>
+          <td>Your daily credit count, tool usage history, dark mode preference, premium status</td>
+          <td>Stored locally on your device only, to run features like your daily free-credit limit and writing history. This never reaches us.</td>
+        </tr>
+        <tr>
+          <td>Advertising identifier</td>
+          <td>Android Advertising ID and device/ad interaction data</td>
+          <td>Collected by Google AdMob to show and measure ads. We don't control or access this data directly — see Section 3.</td>
+        </tr>
+        <tr>
+          <td>Purchase information</td>
+          <td>Confirmation that you purchased the Premium upgrade (₹99 one-time)</td>
+          <td>Handled entirely by Google Play Billing. We only receive a purchase-confirmed status, not your payment details.</td>
+        </tr>
+      </table>
+      <p>WriteEase AI does <strong>not</strong> require an account, and we do not collect your name, email address, or phone number directly within the app.</p>
+    </section>
+
+    <section id="s2">
+      <h2><span class="num">02</span> How your text is processed</h2>
+      <p>When you use a writing tool, your text is sent over an encrypted (HTTPS) connection to <a href="https://groq.com" target="_blank" rel="noopener">Groq</a>, a third-party AI inference provider, solely to generate the requested output — a paraphrase, a grammar fix, and so on. We do not permanently store this text on any server we operate.</p>
+      <div class="callout"><strong>Please avoid</strong> entering sensitive personal information — financial details, passwords, medical information — into the writing tools, since it is transmitted to a third-party service for processing.</div>
+    </section>
+
+    <section id="s3">
+      <h2><span class="num">03</span> Third-party services</h2>
+      <p>WriteEase AI uses the following third-party services, each governed by its own privacy policy:</p>
+      <table>
+        <tr><th>Service</th><th>Purpose</th><th>Policy</th></tr>
+        <tr><td>Groq</td><td>AI text processing for all writing tools</td><td><a href="https://groq.com/privacy-policy/" target="_blank" rel="noopener">groq.com/privacy-policy</a></td></tr>
+        <tr><td>Google AdMob</td><td>Displaying banner, interstitial, and rewarded ads</td><td><a href="https://policies.google.com/privacy" target="_blank" rel="noopener">policies.google.com/privacy</a></td></tr>
+        <tr><td>Google Play Billing</td><td>Processing the one-time Premium purchase</td><td><a href="https://policies.google.com/privacy" target="_blank" rel="noopener">policies.google.com/privacy</a></td></tr>
+      </table>
+    </section>
+
+    <section id="s4">
+      <h2><span class="num">04</span> Data storage &amp; retention</h2>
+      <p>Your writing history, usage counters, and preferences are stored locally on your device using Android's app storage. This data is deleted automatically if you uninstall the app or manually clear its storage/cache. We do not maintain our own backend database of user content.</p>
+    </section>
+
+    <section id="s5">
+      <h2><span class="num">05</span> Children's privacy</h2>
+      <p>WriteEase AI is not directed at children under the age of 13, and we do not knowingly collect personal information from children under 13. If you believe a child has provided us with personal information, please contact us using the details in Section 9 so we can address it.</p>
+    </section>
+
+    <section id="s6">
+      <h2><span class="num">06</span> Your choices</h2>
+      <ul>
+        <li>Clear your local history and usage data at any time by clearing the app's storage in Android Settings, or by uninstalling the app.</li>
+        <li>Opt out of personalized advertising through your device's Google Ads Settings (Settings → Google → Ads → Opt out of Ads Personalization).</li>
+        <li>Request account/data deletion assistance by contacting us — see Section 9.</li>
+      </ul>
+    </section>
+
+    <section id="s7">
+      <h2><span class="num">07</span> Data security</h2>
+      <p>We use industry-standard encryption (HTTPS/TLS) for all network communication between the app and our AI processing partner. No method of transmission or storage is 100% secure, but we take reasonable steps to protect your information.</p>
+    </section>
+
+    <section id="s8">
+      <h2><span class="num">08</span> Changes to this policy</h2>
+      <p>We may update this Privacy Policy from time to time. Changes will be posted on this page with an updated "Last updated" date. Continued use of the App after changes are posted constitutes acceptance of the revised policy.</p>
+    </section>
+
+    <section id="s9">
+      <h2><span class="num">09</span> Contact us</h2>
+      <div class="contact">
+        <p>Questions about this policy or how your data is handled?</p>
+        <div class="email-line">[rupeshpisal1505@gmail.com]</div>
+      </div>
+    </section>
+
+  </main>
+</div>
+
+<footer>WriteEase AI — Privacy Policy</footer>
 
 </body>
 </html>
