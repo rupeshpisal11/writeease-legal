@@ -20,95 +20,95 @@
     --card:#ffffff;
     --radius:10px;
   }
-  *{box-sizing:border-box;}
+  *{box-sizing:border-box; -webkit-tap-highlight-color:transparent;}
   html{scroll-behavior:smooth;}
   body{
     margin:0;
     background:var(--paper);
     color:var(--ink);
     font-family:'Inter',-apple-system,Segoe UI,Roboto,Arial,sans-serif;
-    line-height:1.65;
+    line-height:1.6;
+    font-size:16px;
     -webkit-font-smoothing:antialiased;
   }
   a{color:var(--teal);}
-  a:hover{text-decoration-thickness:2px;}
+  a:active{opacity:.7;}
   code, .mono{ font-family:'IBM Plex Mono',monospace; }
 
-  /* ===== Header / Hero ===== */
+  /* ===== Header / Hero — mobile first ===== */
   .hero{
     max-width:1040px;
     margin:0 auto;
-    padding:64px 24px 40px;
+    padding:32px 18px 24px;
   }
   .eyebrow{
     font-family:'IBM Plex Mono',monospace;
-    font-size:12px;
-    letter-spacing:.12em;
+    font-size:11px;
+    letter-spacing:.1em;
     text-transform:uppercase;
     color:var(--teal);
     display:flex;
     align-items:center;
-    gap:10px;
-    margin-bottom:18px;
+    gap:8px;
+    margin-bottom:14px;
   }
   .eyebrow::before{
     content:"";
-    width:7px;height:7px;border-radius:50%;
+    width:6px;height:6px;border-radius:50%;
     background:var(--teal);
     display:inline-block;
+    flex:none;
   }
   h1{
     font-family:'Source Serif 4', Georgia, serif;
     font-weight:700;
-    font-size:clamp(32px, 5vw, 46px);
-    line-height:1.1;
-    margin:0 0 14px;
+    font-size:28px;
+    line-height:1.15;
+    margin:0 0 12px;
     letter-spacing:-0.01em;
   }
   .sub{
     color:var(--ink-soft);
-    font-size:16.5px;
-    max-width:620px;
+    font-size:15.5px;
     margin:0 0 8px;
   }
   .updated{
     font-family:'IBM Plex Mono',monospace;
-    font-size:12.5px;
+    font-size:12px;
     color:#8a8578;
   }
 
-  /* ===== Data receipt (signature element) ===== */
+  /* ===== Data receipt (signature element) — stacked on mobile ===== */
   .receipt{
     max-width:1040px;
-    margin:8px auto 8px;
-    padding:0 24px;
+    margin:0 auto 4px;
+    padding:0 18px;
   }
   .receipt-card{
     background:var(--card);
     border:1px solid var(--hairline);
     border-radius:var(--radius);
-    padding:22px 24px;
+    padding:18px 16px;
     box-shadow:0 1px 2px rgba(20,20,10,0.03);
   }
   .receipt-title{
     font-family:'IBM Plex Mono',monospace;
-    font-size:11px;
-    letter-spacing:.1em;
+    font-size:10.5px;
+    letter-spacing:.09em;
     text-transform:uppercase;
     color:#8a8578;
-    margin-bottom:14px;
+    margin-bottom:12px;
   }
   .receipt-row{
     display:flex;
-    align-items:baseline;
-    justify-content:space-between;
-    gap:16px;
-    padding:11px 0;
+    flex-direction:column;
+    gap:4px;
+    padding:13px 0;
     border-top:1px dashed var(--hairline);
     font-size:14.5px;
   }
-  .receipt-row:first-of-type{border-top:none;}
-  .receipt-left{display:flex; align-items:baseline; gap:10px;}
+  .receipt-row:first-of-type{border-top:none; padding-top:0;}
+  .receipt-left{display:flex; align-items:baseline; gap:9px;}
   .dot{width:8px;height:8px;border-radius:50%;flex:none;position:relative;top:-1px;}
   .dot.local{background:var(--ink-soft);}
   .dot.processed{background:var(--teal);}
@@ -116,108 +116,117 @@
   .receipt-label{font-weight:500;}
   .receipt-dest{
     font-family:'IBM Plex Mono',monospace;
-    font-size:12.5px;
+    font-size:12px;
     color:var(--ink-soft);
-    white-space:nowrap;
+    padding-left:17px;
   }
   .receipt-legend{
     display:flex;
-    flex-wrap:wrap;
-    gap:18px;
-    margin-top:16px;
+    flex-direction:column;
+    gap:9px;
+    margin-top:14px;
     padding-top:14px;
     border-top:1px solid var(--hairline);
     font-size:12.5px;
     color:var(--ink-soft);
   }
-  .receipt-legend span{display:flex; align-items:center; gap:6px;}
+  .receipt-legend span{display:flex; align-items:center; gap:7px;}
 
-  /* ===== Layout: TOC + content ===== */
+  /* ===== Layout: mobile-first single column ===== */
   .layout{
     max-width:1040px;
     margin:0 auto;
-    padding:48px 24px 100px;
-    display:grid;
-    grid-template-columns:220px 1fr;
-    gap:56px;
-    align-items:start;
+    padding:28px 18px 72px;
   }
   nav.toc{
-    position:sticky;
-    top:32px;
-    font-size:13.5px;
+    margin-bottom:28px;
+    padding-bottom:16px;
+    border-bottom:1px solid var(--hairline);
   }
   nav.toc .toc-title{
     font-family:'IBM Plex Mono',monospace;
-    font-size:11px;
-    letter-spacing:.1em;
+    font-size:10.5px;
+    letter-spacing:.09em;
     text-transform:uppercase;
     color:#8a8578;
-    margin-bottom:12px;
+    margin-bottom:10px;
   }
-  nav.toc ol{
-    list-style:none;
-    margin:0; padding:0;
-    display:flex; flex-direction:column; gap:2px;
+  nav.toc .toc-scroll{
+    display:flex;
+    gap:8px;
+    overflow-x:auto;
+    padding-bottom:4px;
+    -webkit-overflow-scrolling:touch;
+    scrollbar-width:none;
   }
+  nav.toc .toc-scroll::-webkit-scrollbar{display:none;}
   nav.toc a{
+    flex:none;
     color:var(--ink-soft);
     text-decoration:none;
     display:flex;
-    gap:10px;
-    padding:6px 0;
-    border-left:2px solid transparent;
-    padding-left:12px;
-    margin-left:-12px;
-    transition:color .15s, border-color .15s;
+    align-items:center;
+    gap:7px;
+    padding:9px 13px;
+    background:var(--card);
+    border:1px solid var(--hairline);
+    border-radius:999px;
+    font-size:13px;
+    white-space:nowrap;
   }
-  nav.toc a:hover{color:var(--ink); border-color:var(--hairline);}
+  nav.toc a:active{background:var(--teal-soft); border-color:var(--teal);}
   nav.toc .num{
     font-family:'IBM Plex Mono',monospace;
     color:#b8b2a2;
-    font-size:12px;
+    font-size:11.5px;
   }
 
   main{min-width:0;}
   section{
-    padding-top:6px;
-    margin-bottom:44px;
-    scroll-margin-top:28px;
+    padding-top:4px;
+    margin-bottom:36px;
+    scroll-margin-top:16px;
   }
   section h2{
     font-family:'Source Serif 4', Georgia, serif;
     font-weight:600;
-    font-size:23px;
-    margin:0 0 14px;
+    font-size:20px;
+    margin:0 0 12px;
     display:flex;
     align-items:baseline;
-    gap:12px;
+    gap:10px;
   }
   section h2 .num{
     font-family:'IBM Plex Mono',monospace;
-    font-size:14px;
+    font-size:13px;
     color:var(--teal);
     font-weight:500;
   }
   section p, section li{
     color:#2a2f38;
-    font-size:15.5px;
+    font-size:15px;
   }
-  section ul{padding-left:20px;}
+  section ul{padding-left:18px; margin-top:8px;}
+  section li{margin-bottom:8px;}
 
-  table{
-    width:100%;
-    border-collapse:collapse;
-    margin:18px 0 6px;
-    font-size:14px;
-    background:var(--card);
+  /* Tables scroll horizontally on narrow screens */
+  .table-scroll{
+    overflow-x:auto;
+    -webkit-overflow-scrolling:touch;
+    margin:16px 0 6px;
     border:1px solid var(--hairline);
     border-radius:var(--radius);
-    overflow:hidden;
+  }
+  table{
+    width:100%;
+    min-width:560px;
+    border-collapse:collapse;
+    font-size:13.5px;
+    background:var(--card);
   }
   th, td{
     text-align:left;
-    padding:12px 14px;
+    padding:11px 13px;
     border-bottom:1px solid var(--hairline);
     vertical-align:top;
   }
@@ -226,20 +235,26 @@
     background:#f4f2ec;
     font-family:'IBM Plex Mono',monospace;
     font-weight:500;
-    font-size:11.5px;
-    letter-spacing:.04em;
+    font-size:11px;
+    letter-spacing:.03em;
     text-transform:uppercase;
     color:var(--ink-soft);
+  }
+  .table-hint{
+    font-family:'IBM Plex Mono',monospace;
+    font-size:11px;
+    color:#a19c8d;
+    margin:6px 0 0;
   }
 
   .callout{
     background:var(--amber-soft);
     border:1px solid #ecd9bb;
     border-radius:var(--radius);
-    padding:14px 18px;
-    font-size:14.5px;
+    padding:13px 15px;
+    font-size:14px;
     color:#5a3c10;
-    margin-top:14px;
+    margin-top:12px;
   }
   .callout strong{color:#8a5410;}
 
@@ -247,40 +262,85 @@
     background:var(--teal-soft);
     border:1px solid #cfe4e1;
     border-radius:var(--radius);
-    padding:22px 24px;
-    margin-top:10px;
+    padding:18px 16px;
+    margin-top:8px;
   }
   .contact p{margin:0 0 8px; color:#123b37;}
   .contact .email-line{
     font-family:'IBM Plex Mono',monospace;
-    font-size:15px;
+    font-size:14.5px;
     color:var(--teal);
-    margin-top:6px;
+    margin-top:4px;
+    word-break:break-all;
   }
 
   footer{
     max-width:1040px;
     margin:0 auto;
-    padding:0 24px 60px;
+    padding:0 18px 44px;
     color:#a19c8d;
-    font-size:12.5px;
+    font-size:12px;
     font-family:'IBM Plex Mono',monospace;
   }
 
-  @media (max-width: 780px){
-    .layout{grid-template-columns:1fr; gap:0;}
-    nav.toc{
-      position:static;
-      margin-bottom:32px;
-      padding-bottom:20px;
-      border-bottom:1px solid var(--hairline);
-    }
-    nav.toc ol{
+  /* ===== Desktop enhancement ===== */
+  @media (min-width: 780px){
+    .hero{padding:64px 24px 40px;}
+    h1{font-size:clamp(32px, 5vw, 46px);}
+    .sub{font-size:16.5px; max-width:620px;}
+    .eyebrow{font-size:12px; margin-bottom:18px;}
+
+    .receipt{padding:0 24px;}
+    .receipt-card{padding:22px 24px;}
+    .receipt-row{
       flex-direction:row;
-      flex-wrap:wrap;
-      gap:8px 16px;
+      align-items:baseline;
+      justify-content:space-between;
+      gap:16px;
+      padding:11px 0;
     }
-    nav.toc a{padding-left:0; margin-left:0; border-left:none;}
+    .receipt-dest{padding-left:0;}
+    .receipt-legend{flex-direction:row; flex-wrap:wrap; gap:18px;}
+
+    .layout{
+      padding:48px 24px 100px;
+      display:grid;
+      grid-template-columns:220px 1fr;
+      gap:56px;
+      align-items:start;
+    }
+    nav.toc{
+      position:sticky;
+      top:32px;
+      margin-bottom:0;
+      padding-bottom:0;
+      border-bottom:none;
+      font-size:13.5px;
+    }
+    nav.toc .toc-scroll{
+      flex-direction:column;
+      overflow-x:visible;
+    }
+    nav.toc a{
+      background:none;
+      border:none;
+      border-left:2px solid transparent;
+      border-radius:0;
+      padding:6px 0 6px 12px;
+      margin-left:-12px;
+    }
+    nav.toc a:active, nav.toc a:hover{background:none; color:var(--ink); border-color:var(--hairline);}
+
+    section{margin-bottom:44px; scroll-margin-top:28px;}
+    section h2{font-size:23px;}
+    section p, section li{font-size:15.5px;}
+
+    table{min-width:0;}
+    th, td{padding:12px 14px; font-size:14px;}
+    .table-hint{display:none;}
+
+    .contact{padding:22px 24px;}
+    .contact .email-line{font-size:15px; word-break:normal;}
   }
 
   @media (prefers-reduced-motion: reduce){
@@ -344,46 +404,49 @@
 <div class="layout">
   <nav class="toc" aria-label="Table of contents">
     <div class="toc-title">On this page</div>
-    <ol>
-      <li><a href="#s1"><span class="num">01</span> Information we collect</a></li>
-      <li><a href="#s2"><span class="num">02</span> How your text is processed</a></li>
-      <li><a href="#s3"><span class="num">03</span> Third-party services</a></li>
-      <li><a href="#s4"><span class="num">04</span> Storage &amp; retention</a></li>
-      <li><a href="#s5"><span class="num">05</span> Children's privacy</a></li>
-      <li><a href="#s6"><span class="num">06</span> Your choices</a></li>
-      <li><a href="#s7"><span class="num">07</span> Data security</a></li>
-      <li><a href="#s8"><span class="num">08</span> Changes to this policy</a></li>
-      <li><a href="#s9"><span class="num">09</span> Contact us</a></li>
-    </ol>
+    <div class="toc-scroll">
+      <a href="#s1"><span class="num">01</span> Information we collect</a>
+      <a href="#s2"><span class="num">02</span> How your text is processed</a>
+      <a href="#s3"><span class="num">03</span> Third-party services</a>
+      <a href="#s4"><span class="num">04</span> Storage &amp; retention</a>
+      <a href="#s5"><span class="num">05</span> Children's privacy</a>
+      <a href="#s6"><span class="num">06</span> Your choices</a>
+      <a href="#s7"><span class="num">07</span> Data security</a>
+      <a href="#s8"><span class="num">08</span> Changes to this policy</a>
+      <a href="#s9"><span class="num">09</span> Contact us</a>
+    </div>
   </nav>
 
   <main>
 
     <section id="s1">
       <h2><span class="num">01</span> Information we collect</h2>
-      <table>
-        <tr><th>Type</th><th>What it is</th><th>Why we collect it</th></tr>
-        <tr>
-          <td>Text you enter into a writing tool</td>
-          <td>What you type or paste into the Paraphraser, AI Humanizer, Grammar Fixer, Email Writer, Templates, or Plagiarism Checker</td>
-          <td>Sent to our AI processing partner (Groq) solely to generate the tool's output. Not stored on any server we control.</td>
-        </tr>
-        <tr>
-          <td>Usage &amp; history data</td>
-          <td>Your daily credit count, tool usage history, dark mode preference, premium status</td>
-          <td>Stored locally on your device only, to run features like your daily free-credit limit and writing history. This never reaches us.</td>
-        </tr>
-        <tr>
-          <td>Advertising identifier</td>
-          <td>Android Advertising ID and device/ad interaction data</td>
-          <td>Collected by Google AdMob to show and measure ads. We don't control or access this data directly — see Section 3.</td>
-        </tr>
-        <tr>
-          <td>Purchase information</td>
-          <td>Confirmation that you purchased the Premium upgrade (₹99 one-time)</td>
-          <td>Handled entirely by Google Play Billing. We only receive a purchase-confirmed status, not your payment details.</td>
-        </tr>
-      </table>
+      <div class="table-scroll">
+        <table>
+          <tr><th>Type</th><th>What it is</th><th>Why we collect it</th></tr>
+          <tr>
+            <td>Text you enter into a writing tool</td>
+            <td>What you type or paste into the Paraphraser, AI Humanizer, Grammar Fixer, Email Writer, Templates, or Plagiarism Checker</td>
+            <td>Sent to our AI processing partner (Groq) solely to generate the tool's output. Not stored on any server we control.</td>
+          </tr>
+          <tr>
+            <td>Usage &amp; history data</td>
+            <td>Your daily credit count, tool usage history, dark mode preference, premium status</td>
+            <td>Stored locally on your device only, to run features like your daily free-credit limit and writing history. This never reaches us.</td>
+          </tr>
+          <tr>
+            <td>Advertising identifier</td>
+            <td>Android Advertising ID and device/ad interaction data</td>
+            <td>Collected by Google AdMob to show and measure ads. We don't control or access this data directly — see Section 3.</td>
+          </tr>
+          <tr>
+            <td>Purchase information</td>
+            <td>Confirmation that you purchased the Premium upgrade (₹99 one-time)</td>
+            <td>Handled entirely by Google Play Billing. We only receive a purchase-confirmed status, not your payment details.</td>
+          </tr>
+        </table>
+      </div>
+      <p class="table-hint">Swipe to see the full table →</p>
       <p>WriteEase AI does <strong>not</strong> require an account, and we do not collect your name, email address, or phone number directly within the app.</p>
     </section>
 
@@ -396,12 +459,15 @@
     <section id="s3">
       <h2><span class="num">03</span> Third-party services</h2>
       <p>WriteEase AI uses the following third-party services, each governed by its own privacy policy:</p>
-      <table>
-        <tr><th>Service</th><th>Purpose</th><th>Policy</th></tr>
-        <tr><td>Groq</td><td>AI text processing for all writing tools</td><td><a href="https://groq.com/privacy-policy/" target="_blank" rel="noopener">groq.com/privacy-policy</a></td></tr>
-        <tr><td>Google AdMob</td><td>Displaying banner, interstitial, and rewarded ads</td><td><a href="https://policies.google.com/privacy" target="_blank" rel="noopener">policies.google.com/privacy</a></td></tr>
-        <tr><td>Google Play Billing</td><td>Processing the one-time Premium purchase</td><td><a href="https://policies.google.com/privacy" target="_blank" rel="noopener">policies.google.com/privacy</a></td></tr>
-      </table>
+      <div class="table-scroll">
+        <table>
+          <tr><th>Service</th><th>Purpose</th><th>Policy</th></tr>
+          <tr><td>Groq</td><td>AI text processing for all writing tools</td><td><a href="https://groq.com/privacy-policy/" target="_blank" rel="noopener">groq.com/privacy-policy</a></td></tr>
+          <tr><td>Google AdMob</td><td>Displaying banner, interstitial, and rewarded ads</td><td><a href="https://policies.google.com/privacy" target="_blank" rel="noopener">policies.google.com/privacy</a></td></tr>
+          <tr><td>Google Play Billing</td><td>Processing the one-time Premium purchase</td><td><a href="https://policies.google.com/privacy" target="_blank" rel="noopener">policies.google.com/privacy</a></td></tr>
+        </table>
+      </div>
+      <p class="table-hint">Swipe to see the full table →</p>
     </section>
 
     <section id="s4">
@@ -437,7 +503,7 @@
       <h2><span class="num">09</span> Contact us</h2>
       <div class="contact">
         <p>Questions about this policy or how your data is handled?</p>
-        <div class="email-line">[rupeshpisal1505@gmail.com]</div>
+        <div class="email-line">[YOUR SUPPORT EMAIL HERE]</div>
       </div>
     </section>
 
